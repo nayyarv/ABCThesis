@@ -1,0 +1,117 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+While EM is not the focus of this thesis, a brief description of the procedure
+ as given in Bishop Ch 9 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bishop2006pattern"
+
+\end_inset
+
+ is provided for the sake of completeness.
+\end_layout
+
+\begin_layout Enumerate
+Initialise the 
+\begin_inset Formula $\mu_{k},\Sigma_{k},\pi_{k}$
+\end_inset
+
+ to reasonable values, commonly a simple clustering algorithm such as K-means
+ is chosen.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Expectation Step (Holding parameters constant)
+\begin_inset Formula 
+\begin{align*}
+\gamma_{k}^{new} & =\frac{\pi_{k}^{old}\mathcal{N}(\mathbf{x}|\mu_{k}^{old},\Sigma_{k}^{old})}{\sum_{j=1}^{K}\pi_{j}^{old}\mathcal{N}(\mathbf{x}|\mu_{j}^{old},\Sigma_{j}^{old})}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Maximisation (Holding latent variable constant)
+\begin_inset Formula 
+\begin{align*}
+\mu_{k}^{new}= & \frac{1}{N_{k}}\sum_{n=1}^{N}\mathbf{x}_{n}\gamma_{nk}\\
+\Sigma_{k}^{new}= & \frac{1}{N_{k}}\sum_{n=1}^{N}\gamma_{nk}(\mathbf{x}_{n}-\mu_{k}^{new})(\mathbf{x}_{n}-\mu_{k}^{new})^{T}\\
+\pi_{k}^{new}= & N_{k}/N
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Evaluate the likelihood with the new parameters and check if the likelihood
+ has converged.
+ Until then, repeat the Expectation and Maximisation steps.
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,31 @@
+%% LyX 2.0.8.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amsmath}
+\usepackage{babel}
+\begin{document}
+While EM is not the focus of this thesis, a brief description of the
+procedure as given in Bishop Ch 9 \cite{bishop2006pattern} is provided
+for the sake of completeness.
+\begin{enumerate}
+\item Initialise the $\mu_{k},\Sigma_{k},\pi_{k}$ to reasonable values,
+commonly a simple clustering algorithm such as K-means is chosen. 
+\item Expectation Step (Holding parameters constant)
+\begin{align*}
+\gamma_{k}^{new} & =\frac{\pi_{k}^{old}\mathcal{N}(\mathbf{x}|\mu_{k}^{old},\Sigma_{k}^{old})}{\sum_{j=1}^{K}\pi_{j}^{old}\mathcal{N}(\mathbf{x}|\mu_{j}^{old},\Sigma_{j}^{old})}
+\end{align*}
+
+\item Maximisation (Holding latent variable constant)
+\begin{align*}
+\mu_{k}^{new}= & \frac{1}{N_{k}}\sum_{n=1}^{N}\mathbf{x}_{n}\gamma_{nk}\\
+\Sigma_{k}^{new}= & \frac{1}{N_{k}}\sum_{n=1}^{N}\gamma_{nk}(\mathbf{x}_{n}-\mu_{k}^{new})(\mathbf{x}_{n}-\mu_{k}^{new})^{T}\\
+\pi_{k}^{new}= & N_{k}/N
+\end{align*}
+
+\item Evaluate the likelihood with the new parameters and check if the likelihood
+has converged. Until then, repeat the Expectation and Maximisation
+steps.\end{enumerate}
+
+\end{document}
